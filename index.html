@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSAG – Modern Solutions Advisory Group</title>
+  <meta name="description" content="MSAG advises organizations on building secure, scalable digital systems that support growth, performance, and long-term stability. Strategy. Execution. Accountability." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0d0d0e;
+      color: #ffffff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --yellow: #EDF069;
+      --yellow-dim: #d4d84f;
+      --dark: #0d0d0e;
+      --dark-2: #131314;
+      --dark-3: #1a1a1c;
+      --dark-4: #222224;
+      --border: rgba(255,255,255,0.08);
+      --text-muted: rgba(255,255,255,0.55);
+      --text-secondary: rgba(255,255,255,0.75);
+      --radius: 16px;
+      --radius-sm: 8px;
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 3px; }
+
+    /* ===== UTILITY ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-label {
+      display: inline-block;
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      background: rgba(237,240,105,0.1);
+      border: 1px solid rgba(237,240,105,0.25);
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .section-heading {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #fff;
+    }
+    .section-heading span { color: var(--yellow); }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin-top: 12px;
+      line-height: 1.7;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 14px 28px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--dark);
+    }
+    .btn-primary:hover {
+      background: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(237,240,105,0.25);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      transform: translateY(-2px);
+    }
+
+    /* ===== NOISE OVERLAY ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ===== NAVIGATION ===== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      transition: var(--transition);
+    }
+    #navbar.scrolled {
+      background: rgba(13,13,14,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-logo-mark {
+      width: 38px; height: 38px;
+      background: var(--yellow);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--dark);
+      flex-shrink: 0;
+    }
+    .nav-logo-text {
+      font-family: 'Lexend Deca', sans-serif;
+    }
+    .nav-logo-text strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.06em;
+    }
+    .nav-logo-text span {
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-links a {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: var(--transition);
+      letter-spacing: 0.02em;
+    }
+    .nav-links a:hover {
+      color: var(--yellow);
+      background: rgba(237,240,105,0.06);
+    }
+    .nav-cta { margin-left: 8px; }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+    .nav-hamburger:hover { background: var(--dark-4); }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: rgba(13,13,14,0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px 24px;
+      z-index: 999;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 12px 16px;
+      border-radius: 10px;
+      transition: var(--transition);
+    }
+    .mobile-menu a:hover {
+      color: var(--yellow);
+      background: rgba(237,240,105,0.06);
+    }
+    .mobile-menu .btn { width: 100%; justify-content: center; margin-top: 8px; }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 120px 0 80px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      top: -15%; left: 0; right: 0; bottom: 0;
+      will-change: transform;
+      background:
+        radial-gradient(ellipse 70% 60% at 60% 40%, rgba(237,240,105,0.08) 0%, transparent 55%),
+        linear-gradient(180deg, rgba(13,13,14,0.28) 0%, rgba(13,13,14,0.48) 55%, #0d0d0e 100%),
+        url('https://msagtech.com/assets/images/container11.jpg?v=7536d9c2') center center / cover no-repeat;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg { top: 0; will-change: auto; }
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow-line {
+      width: 32px; height: 2px;
+      background: var(--yellow);
+      border-radius: 2px;
+    }
+    .hero-eyebrow-text {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+    .hero-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .hero-title .accent { color: var(--yellow); }
+    .hero-tagline {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-tagline strong {
+      color: var(--yellow);
+      font-weight: 600;
+    }
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .hero-trust-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .hero-trust-badges {
+      display: flex;
+      gap: 8px;
+    }
+    .hero-badge {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    /* Floating accent card */
+    .hero-float {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 360px;
+      display: grid;
+      gap: 16px;
+      z-index: 2;
+    }
+    .hero-float-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      backdrop-filter: blur(10px);
+    }
+    .hero-float-card-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .hero-float-card-value {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .hero-float-card-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .hero-float-card-dot {
+      width: 8px; height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+      box-shadow: 0 0 8px rgba(74,222,128,0.6);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 8px rgba(74,222,128,0.6); }
+      50% { box-shadow: 0 0 16px rgba(74,222,128,0.9); }
+    }
+
+    /* ===== STATS BAR ===== */
+    #stats {
+      padding: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--dark-2);
+      position: relative;
+      z-index: 3;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 36px 24px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      position: relative;
+      transition: var(--transition);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: rgba(237,240,105,0.03); }
+    .stat-num {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    /* ===== SERVICES ===== */
+    #services {
+      padding: 120px 0;
+      position: relative;
+    }
+    #services::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--yellow), transparent);
+      opacity: 0.4;
+    }
+    .services-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .services-header .section-sub { margin: 12px auto 0; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--dark-2);
+      padding: 40px 36px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--yellow);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+    .service-card:hover {
+      background: var(--dark-3);
+    }
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+    .service-icon {
+      width: 52px; height: 52px;
+      background: rgba(237,240,105,0.1);
+      border: 1px solid rgba(237,240,105,0.2);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+    .service-card:hover .service-icon {
+      background: rgba(237,240,105,0.18);
+      border-color: rgba(237,240,105,0.4);
+    }
+    .service-icon svg {
+      width: 24px; height: 24px;
+      stroke: var(--yellow);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .service-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .service-features {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .service-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+    .service-feature::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--yellow);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    /* Explore button on each card */
+    .service-explore-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 28px;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      opacity: 0.75;
+      transition: opacity var(--transition), gap var(--transition);
+    }
+    .service-explore-btn:hover { opacity: 1; gap: 10px; }
+    .service-explore-btn svg { width: 14px; height: 14px; stroke: var(--yellow); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--transition); }
+    .service-explore-btn:hover svg { transform: translateX(3px); }
+
+    /* ── Service Drawer ── */
+    .drawer-overlay {
+      position: fixed; top: 72px; left: 0; right: 0; bottom: 0; z-index: 900;
+      background: rgba(0,0,0,0);
+      pointer-events: none;
+      transition: background 0.35s ease;
+    }
+    .drawer-overlay.open {
+      background: rgba(0,0,0,0.6);
+      pointer-events: all;
+    }
+    .service-drawer {
+      position: fixed;
+      top: 72px; right: 0; bottom: 0;
+      z-index: 901;
+      width: min(520px, 92vw);
+      background: #141416;
+      border-left: 1px solid rgba(255,255,255,0.08);
+      display: flex; flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+    .service-drawer.open { transform: translateX(0); }
+
+    .drawer-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 32px 36px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+    .drawer-head-left { display: flex; align-items: center; gap: 16px; }
+    .drawer-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(237,240,105,0.1);
+      border: 1px solid rgba(237,240,105,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .drawer-icon svg { width: 22px; height: 22px; stroke: var(--yellow); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .drawer-service-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow); opacity: 0.8; margin-bottom: 4px; font-family: 'Lexend Deca', sans-serif; }
+    .drawer-title { font-family: 'Lexend Deca', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1.2; }
+    .drawer-close {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      color: var(--text-muted);
+    }
+    .drawer-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+    .drawer-close svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+    .drawer-body {
+      flex: 1; overflow-y: auto; padding: 32px 36px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.1) transparent;
+    }
+    .drawer-body::-webkit-scrollbar { width: 4px; }
+    .drawer-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+    .drawer-summary {
+      font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;
+      margin-bottom: 32px; border-left: 2px solid var(--yellow); padding-left: 18px;
+    }
+    .drawer-section { margin-bottom: 28px; }
+    .drawer-section-label {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+      margin-bottom: 14px;
+    }
+    .drawer-detail-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .drawer-detail-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;
+    }
+    .drawer-detail-list li::before {
+      content: '';
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--yellow); flex-shrink: 0; margin-top: 8px;
+    }
+    .drawer-profile {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px; padding: 18px 20px;
+      font-size: 0.875rem; color: var(--text-muted); line-height: 1.7;
+    }
+    .drawer-deliverables { display: flex; flex-direction: column; gap: 10px; }
+    .drawer-deliverable {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.875rem; color: #e8e8ea; font-weight: 500;
+    }
+    .drawer-deliverable-dot {
+      width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0;
+      background: rgba(237,240,105,0.08);
+      border: 1px solid rgba(237,240,105,0.18);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .drawer-deliverable-dot svg { width: 13px; height: 13px; stroke: var(--yellow); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .drawer-foot {
+      padding: 24px 36px 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0; background: #141416;
+    }
+    .drawer-cta-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px; }
+    .drawer-cta-note strong { color: var(--text); }
+    .drawer-cta-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 15px 24px;
+      background: var(--yellow); color: var(--dark);
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.03em; text-transform: uppercase;
+      border: none; border-radius: 10px; cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .drawer-cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .drawer-cta-btn svg { width: 15px; height: 15px; stroke: var(--dark); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Mobile: bottom sheet */
+    @media (max-width: 640px) {
+      .drawer-overlay { top: 0; }
+      .service-drawer {
+        top: auto; left: 0; right: 0; bottom: 0;
+        width: 100%; max-height: 88vh;
+        border-left: none; border-top: 1px solid rgba(255,255,255,0.08);
+        border-radius: 20px 20px 0 0;
+        transform: translateY(100%);
+      }
+      .service-drawer.open { transform: translateY(0); }
+      .drawer-head { padding: 24px 24px 20px; }
+      .drawer-body { padding: 24px 24px; }
+      .drawer-foot { padding: 20px 24px 28px; }
+    }
+
+    /* ===== WHY CHOOSE US ===== */
+    #why {
+      padding: 120px 0;
+      background: var(--dark-2);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-bg {
+      position: absolute;
+      right: -200px;
+      top: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(237,240,105,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .why-content {}
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .why-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .why-item-icon {
+      width: 44px; height: 44px;
+      background: rgba(237,240,105,0.08);
+      border: 1px solid rgba(237,240,105,0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .why-item-icon svg {
+      width: 20px; height: 20px;
+      stroke: var(--yellow);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .why-item-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .why-item-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .why-visual {
+      position: relative;
+    }
+    .why-card-stack {
+      position: relative;
+      height: 480px;
+    }
+    .why-main-card {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      height: 280px;
+    }
+    .why-main-card-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+    .why-bar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .why-bar-item { display: flex; flex-direction: column; gap: 6px; }
+    .why-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .why-bar-track {
+      height: 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .why-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--yellow), #a8ac3a);
+      border-radius: 3px;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .why-bottom-cards {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .why-mini-card {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .why-mini-val {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .why-mini-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ===== PROCESS ===== */
+    #process {
+      padding: 120px 0;
+    }
+    .process-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+    .process-header .section-sub { margin: 12px auto 0; }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 1px);
+      right: calc(12.5% + 1px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--yellow), var(--yellow), transparent);
+      opacity: 0.3;
+    }
+    .process-step {
+      padding: 0 24px;
+      text-align: center;
+      position: relative;
+    }
+    .process-step-num {
+      width: 56px; height: 56px;
+      border: 1.5px solid rgba(237,240,105,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--yellow);
+      margin: 0 auto 24px;
+      background: var(--dark);
+      position: relative;
+      z-index: 1;
+    }
+    .process-step-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .process-step-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ===== INDUSTRIES ===== */
+    #industries {
+      padding: 120px 0;
+      background: var(--dark-2);
+    }
+    .industries-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .industry-card {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      transition: var(--transition);
+      cursor: default;
+    }
+    .industry-card:hover {
+      border-color: rgba(237,240,105,0.3);
+      background: rgba(237,240,105,0.04);
+      transform: translateY(-4px);
+    }
+    .industry-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .industry-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .industry-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    #testimonials {
+      padding: 120px 0;
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .testimonial-card {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      transition: var(--transition);
+    }
+    .testimonial-card:hover {
+      border-color: rgba(237,240,105,0.2);
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+    .star {
+      color: var(--yellow);
+      font-size: 14px;
+    }
+    .testimonial-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .testimonial-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(237,240,105,0.3), rgba(237,240,105,0.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--yellow);
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    .testimonial-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ===== CTA ===== */
+    #cta {
+      padding: 120px 0;
+      background: var(--dark-2);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(237,240,105,0.06) 0%, transparent 70%);
+    }
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cta-title span { color: var(--yellow); }
+    .cta-sub {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .cta-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 20px;
+    }
+
+    /* ===== FOOTER ===== */
+    #footer {
+      background: #080809;
+      border-top: 1px solid var(--border);
+      padding: 72px 0 0;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-brand .nav-logo { margin-bottom: 20px; }
+    .footer-brand-desc {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 300px;
+      margin-bottom: 24px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+    .social-btn {
+      width: 38px; height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: var(--transition);
+    }
+    .social-btn:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      background: rgba(237,240,105,0.06);
+    }
+    .social-btn svg {
+      width: 16px; height: 16px;
+      fill: currentColor;
+    }
+    .footer-col-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .footer-contact-item svg {
+      width: 16px; height: 16px;
+      stroke: var(--yellow);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .footer-bottom {
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .footer-copy span { color: var(--yellow); }
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-legal a {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .footer-legal a:hover { color: #fff; }
+
+    /* ===== SUPPLIER PREVIEW ===== */
+    #supplier-preview {
+      padding: 100px 0;
+      background: var(--dark);
+      overflow: hidden;
+    }
+    .supplier-preview-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+    .supplier-preview-header .section-sub { margin-top: 8px; }
+    .supplier-logo-track-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .supplier-logo-track-wrap::before,
+    .supplier-logo-track-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .supplier-logo-track-wrap::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--dark), transparent);
+    }
+    .supplier-logo-track-wrap::after {
+      right: 0;
+      background: linear-gradient(-90deg, var(--dark), transparent);
+    }
+    .supplier-logo-track {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: scroll-logos 50s linear infinite;
+    }
+    .supplier-logo-track:hover { animation-play-state: paused; }
+    @keyframes scroll-logos {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .supplier-logo-item {
+      width: 160px;
+      height: 80px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-right: 1px solid var(--border);
+    }
+    .supplier-logo-item img {
+      max-width: 120px;
+      max-height: 48px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(1) brightness(0.9);
+      transition: filter var(--transition);
+    }
+    .supplier-logo-item img:hover {
+      filter: grayscale(0) brightness(1);
+    }
+    .supplier-logo-track-2 {
+      margin-top: 0;
+      border-top: 1px solid var(--border);
+      animation-direction: reverse;
+      animation-duration: 60s;
+    }
+
+    /* ===== GOVERNMENT TEASER ===== */
+    #gov-teaser {
+      padding: 0;
+      border-top: 3px solid var(--yellow);
+      background: #0a0f1e;
+      position: relative;
+      overflow: hidden;
+    }
+    .gov-teaser-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 320px;
+    }
+    .gov-teaser-content {
+      padding: 72px 64px 72px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .gov-teaser-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #60a5fa;
+      margin-bottom: 20px;
+    }
+    .gov-teaser-label-dot {
+      width: 6px; height: 6px;
+      background: #60a5fa;
+      border-radius: 50%;
+    }
+    .gov-teaser-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .gov-teaser-title span { color: #93c5fd; }
+    .gov-teaser-text {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 32px;
+    }
+    .gov-teaser-vehicles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 72px 0 72px 64px;
+      align-content: center;
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+    .gov-vehicle-badge {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid rgba(96,165,250,0.25);
+      color: #93c5fd;
+      background: rgba(96,165,250,0.07);
+    }
+    .btn-gov {
+      background: transparent;
+      color: #93c5fd;
+      border: 1.5px solid rgba(96,165,250,0.4);
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 100px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-gov:hover {
+      background: rgba(96,165,250,0.1);
+      border-color: #60a5fa;
+    }
+    @media (max-width: 900px) {
+      .gov-teaser-inner { grid-template-columns: 1fr; }
+      .gov-teaser-content { padding: 48px 0 32px; }
+      .gov-teaser-vehicles { padding: 32px 0 48px; border-left: none; border-top: 1px solid rgba(255,255,255,0.08); }
+      .supplier-preview-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .hero-float { display: none; }
+      .why-inner { grid-template-columns: 1fr; gap: 48px; }
+      .why-card-stack { height: 360px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .process-steps::before { display: none; }
+      .industries-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .industries-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .why-bottom-cards { grid-template-columns: 1fr; }
+      .hero-trust { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-mark">M</div>
+        <div class="nav-logo-text">
+          <strong>MSAG</strong>
+          <span>Modern Solutions Advisory Group</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Capabilities</a></li>
+        <li><a href="#why">Why MSAG</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#supplier-preview">Suppliers</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#gov-teaser" style="color:var(--text-muted);font-size:0.78rem;">Government</a></li>
+      </ul>
+      <a href="https://app.usemotion.com/meet/ed-henderson-go/msag" target="_blank" rel="noopener" class="btn btn-primary nav-cta" style="font-size:0.8rem; padding:10px 22px;">Start an Assessment</a>
+      <div class="nav-hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" class="mobile-link">Capabilities</a>
+    <a href="#why" class="mobile-link">Why MSAG</a>
+    <a href="#process" class="mobile-link">Our Process</a>
+    <a href="#supplier-preview" class="mobile-link">Suppliers</a>
+    <a href="#industries" class="mobile-link">Industries</a>
+    <a href="#gov-teaser" class="mobile-link">Government</a>
+    <a href="https://app.usemotion.com/meet/ed-henderson-go/msag" target="_blank" rel="noopener" class="btn btn-primary">Start an Assessment</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span class="hero-eyebrow-text">Strategic Technology Advisory</span>
+        </div>
+        <h1 class="hero-title">
+          Modern Solutions<br /><span class="accent">Advisory Group.</span>
+        </h1>
+        <p class="hero-desc">
+          We advise organizations on building secure, scalable digital systems that support growth, performance, and long-term stability.
+        </p>
+        <p class="hero-tagline" style="margin-bottom:36px;">
+          <strong>Strategy.</strong> <span style="color:var(--text-secondary)">Execution.</span> <strong>Accountability.</strong>
+        </p>
+        <div class="hero-actions">
+          <a href="https://app.usemotion.com/meet/ed-henderson-go/msag" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Start Your Assessment
+          </a>
+          <a href="#services" class="btn btn-outline">Our Capabilities</a>
+        </div>
+      </div>
+      <!-- Floating cards -->
+      <div class="hero-float">
+        <div class="hero-float-card">
+          <div class="hero-float-card-label">Project Status</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
+            <span class="hero-float-card-dot"></span>
+            <span style="font-size:0.85rem;color:var(--text-secondary);">Operations Active</span>
+          </div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px;">
+            <div style="height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;">
+              <div style="width:78%;height:100%;background:var(--yellow);border-radius:2px;"></div>
+            </div>
+            <div style="font-size:0.75rem;color:var(--text-muted);">78% of Q2 milestones completed</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div class="hero-float-card">
+            <div class="hero-float-card-label">Projects</div>
+            <div class="hero-float-card-value">150+</div>
+            <div class="hero-float-card-sub">Delivered</div>
+          </div>
+          <div class="hero-float-card">
+            <div class="hero-float-card-label">Team</div>
+            <div class="hero-float-card-value">50+</div>
+            <div class="hero-float-card-sub">Experts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section id="stats">
+    <div class="container" style="padding:0;">
+      <div class="stats-grid">
+        <div class="stat-item fade-up">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Years of Technology<br />Leadership</div>
+        </div>
+        <div class="stat-item fade-up delay-1">
+          <div class="stat-num" data-target="150">0</div>
+          <div class="stat-label">Organizations<br />Advised</div>
+        </div>
+        <div class="stat-item fade-up delay-2">
+          <div class="stat-num">100+</div>
+          <div class="stat-label">Supplier &amp; Vendor<br />Partnerships</div>
+        </div>
+        <div class="stat-item fade-up delay-3">
+          <div class="stat-num">Vendor<br style="display:none;"/>Agnostic</div>
+          <div class="stat-label">Always the Right Fit —<br />Not the Easiest Sale</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header fade-up">
+        <div class="section-label">Advisory Capabilities</div>
+        <h2 class="section-heading">Technology Should Drive <span>Performance —<br/>Not Create Risk.</span></h2>
+        <p class="section-sub">Too many organizations are overcharged, underserved, or locked into the wrong technology. MSAG provides independent advisory across every layer of your digital environment — so every decision is informed, structured, and aligned to your goals.</p>
+      </div>
+      <div class="services-grid">
+
+        <!-- Technology Advisory -->
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3 class="service-title">Technology Advisory</h3>
+          <p class="service-desc">Executive-level strategic guidance to align your technology investments with business performance and long-term organizational goals.</p>
+          <ul class="service-features">
+            <li class="service-feature">Executive technology assessment</li>
+            <li class="service-feature">IT roadmap development</li>
+            <li class="service-feature">Vendor landscape analysis</li>
+            <li class="service-feature">Risk &amp; compliance mapping</li>
+          </ul>
+          <button class="service-explore-btn" data-service="tech-advisory" aria-haspopup="dialog">
+            Explore this capability
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Infrastructure Strategy -->
+        <div class="service-card fade-up delay-1">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <h3 class="service-title">Infrastructure Strategy</h3>
+          <p class="service-desc">Comprehensive review and architecture planning across network, cloud, collaboration, and connectivity systems built for resilience and scale.</p>
+          <ul class="service-features">
+            <li class="service-feature">Network &amp; connectivity architecture</li>
+            <li class="service-feature">Cloud environment planning</li>
+            <li class="service-feature">Collaboration system evaluation</li>
+            <li class="service-feature">Scalability &amp; redundancy design</li>
+          </ul>
+          <button class="service-explore-btn" data-service="infrastructure" aria-haspopup="dialog">
+            Explore this capability
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Cybersecurity -->
+        <div class="service-card fade-up delay-2">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="service-title">Cybersecurity Advisory</h3>
+          <p class="service-desc">Proactive security strategy built around risk reduction, governance frameworks, and compliance alignment — not just reactive incident response.</p>
+          <ul class="service-features">
+            <li class="service-feature">Security posture assessment</li>
+            <li class="service-feature">Vulnerability &amp; endpoint review</li>
+            <li class="service-feature">NIST / CIS compliance alignment</li>
+            <li class="service-feature">Cybersecurity governance roadmap</li>
+          </ul>
+          <button class="service-explore-btn" data-service="cybersecurity" aria-haspopup="dialog">
+            Explore this capability
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Modernization Roadmaps -->
+        <div class="service-card fade-up delay-3">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="service-title">Modernization Roadmaps</h3>
+          <p class="service-desc">Structured plans to replace legacy systems, rationalize applications, and migrate to modern platforms — phased, prioritized, and risk-managed.</p>
+          <ul class="service-features">
+            <li class="service-feature">Current-state technology audit</li>
+            <li class="service-feature">Legacy system performance review</li>
+            <li class="service-feature">Phased modernization planning</li>
+            <li class="service-feature">Change management framework</li>
+          </ul>
+          <button class="service-explore-btn" data-service="modernization" aria-haspopup="dialog">
+            Explore this capability
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Vendor &amp; Supplier Ecosystem -->
+        <div class="service-card fade-up delay-4">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="service-title">Vendor &amp; Supplier Ecosystem</h3>
+          <p class="service-desc">As a vendor-agnostic advisor, we evaluate 100+ suppliers across cloud, connectivity, cybersecurity, and collaboration — recommending only what's right for you.</p>
+          <ul class="service-features">
+            <li class="service-feature">Multi-vendor landscape evaluation</li>
+            <li class="service-feature">Contract &amp; SLA review</li>
+            <li class="service-feature">Technology broker services</li>
+            <li class="service-feature">No vendor bias — ever</li>
+          </ul>
+          <button class="service-explore-btn" data-service="vendor" aria-haspopup="dialog">
+            Explore this capability
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Managed Services -->
+        <div class="service-card fade-up delay-5">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          </div>
+          <h3 class="service-title">Managed Execution</h3>
+          <p class="service-desc">Beyond strategy, we can oversee implementation — acting as your program management layer above vendors to ensure on-time, on-budget delivery.</p>
+          <ul class="service-features">
+            <li class="service-feature">Program &amp; project oversight</li>
+            <li class="service-feature">Vendor performance management</li>
+            <li class="service-feature">Implementation quality assurance</li>
+            <li class="service-feature">Post-launch optimization support</li>
+          </ul>
+          <button class="service-explore-btn" data-service="managed-execution" aria-haspopup="dialog">
+            Explore this capability
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE US ===== -->
+  <section id="why">
+    <div class="why-bg"></div>
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-content">
+          <div class="section-label fade-up">Why MSAG</div>
+          <h2 class="section-heading fade-up delay-1">Independent Advice.<br /><span>Accountable Execution.</span></h2>
+          <p class="section-sub fade-up delay-2">Most technology decisions are made under vendor pressure. MSAG removes that pressure. We're not tied to any platform, product, or provider — our only obligation is to your organization's success.</p>
+          <div class="why-list">
+            <div class="why-item fade-up delay-2">
+              <div class="why-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="why-item-title">Truly Vendor-Agnostic</div>
+                <p class="why-item-text">We work with 100+ suppliers and are not incentivized by any single vendor. You get honest analysis — not a pitch disguised as advice.</p>
+              </div>
+            </div>
+            <div class="why-item fade-up delay-3">
+              <div class="why-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div>
+                <div class="why-item-title">Strategic First, Implementation Second</div>
+                <p class="why-item-text">We define the right architecture and roadmap before a single dollar is spent on technology. Structured thinking saves organizations from expensive course corrections.</p>
+              </div>
+            </div>
+            <div class="why-item fade-up delay-4">
+              <div class="why-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <div class="why-item-title">Named Advisors, Not Ticket Queues</div>
+                <p class="why-item-text">Every engagement has a dedicated MSAG advisor who knows your environment. You get a strategic partner who is accountable to your outcomes — not a support rotation.</p>
+              </div>
+            </div>
+            <div class="why-item fade-up delay-5">
+              <div class="why-item-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </div>
+              <div>
+                <div class="why-item-title">20+ Years of Technology Leadership</div>
+                <p class="why-item-text">Deep experience across enterprise, mid-market, and public-sector environments means we've already navigated the challenges your organization is facing today.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="why-visual fade-up delay-2">
+          <div class="why-card-stack">
+            <div class="why-main-card">
+              <div class="why-main-card-title">Performance Benchmarks</div>
+              <div class="why-bar-list">
+                <div class="why-bar-item">
+                  <div class="why-bar-label"><span>On-Time Delivery</span><span>96%</span></div>
+                  <div class="why-bar-track"><div class="why-bar-fill" style="width:96%"></div></div>
+                </div>
+                <div class="why-bar-item">
+                  <div class="why-bar-label"><span>Client Satisfaction</span><span>98%</span></div>
+                  <div class="why-bar-track"><div class="why-bar-fill" style="width:98%"></div></div>
+                </div>
+                <div class="why-bar-item">
+                  <div class="why-bar-label"><span>Security Compliance</span><span>100%</span></div>
+                  <div class="why-bar-track"><div class="why-bar-fill" style="width:100%"></div></div>
+                </div>
+                <div class="why-bar-item">
+                  <div class="why-bar-label"><span>Uptime SLA Met</span><span>99.9%</span></div>
+                  <div class="why-bar-track"><div class="why-bar-fill" style="width:99%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="why-bottom-cards">
+              <div class="why-mini-card">
+                <div class="why-mini-val">8+</div>
+                <div class="why-mini-label">Years of Government &amp; Enterprise Experience</div>
+              </div>
+              <div class="why-mini-card">
+                <div class="why-mini-val">A+</div>
+                <div class="why-mini-label">Past Performance Rating Across All Contracts</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section id="process">
+    <div class="container">
+      <div class="process-header fade-up">
+        <div class="section-label">Our Advisory Process</div>
+        <h2 class="section-heading">Structured Thinking.<br /><span>Clear Outcomes.</span></h2>
+        <p class="section-sub">A disciplined advisory process that moves from insight to action — eliminating ambiguity, reducing risk, and keeping your organization in control.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step fade-up">
+          <div class="process-step-num">01</div>
+          <h3 class="process-step-title">Assess</h3>
+          <p class="process-step-text">We evaluate your current technology environment — infrastructure, security posture, vendor relationships, and performance gaps — to establish a clear baseline.</p>
+        </div>
+        <div class="process-step fade-up delay-1">
+          <div class="process-step-num">02</div>
+          <h3 class="process-step-title">Advise</h3>
+          <p class="process-step-text">We deliver an objective analysis and executive roadmap — architecture recommendations, vendor guidance, risk priorities, and a phased modernization plan.</p>
+        </div>
+        <div class="process-step fade-up delay-2">
+          <div class="process-step-num">03</div>
+          <h3 class="process-step-title">Execute</h3>
+          <p class="process-step-text">When it's time to implement, we can serve as your program management layer — overseeing vendors, tracking milestones, and ensuring delivery matches the plan.</p>
+        </div>
+        <div class="process-step fade-up delay-3">
+          <div class="process-step-num">04</div>
+          <h3 class="process-step-title">Optimize</h3>
+          <p class="process-step-text">Technology environments evolve. We provide ongoing advisory support to adapt your roadmap, manage vendor performance, and drive continuous operational improvement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INDUSTRIES ===== -->
+  <section id="industries">
+    <div class="container">
+      <div class="industries-header fade-up">
+        <div class="section-label">Who We Work With</div>
+        <h2 class="section-heading">Built for <span>Enterprise &amp; Mid-Market</span> Organizations</h2>
+        <p class="section-sub" style="margin:12px auto 0;">MSAG brings structured technology advisory to organizations navigating growth, modernization, and increased complexity — across every major sector.</p>
+      </div>
+      <div class="industries-grid" id="industries-grid">
+        <div class="industry-card fade-up">
+          <div class="industry-icon">🏢</div>
+          <h3 class="industry-title">Enterprise &amp; Mid-Market</h3>
+          <p class="industry-text">Organizations scaling infrastructure, rationalizing vendors, and building secure, high-performance digital environments for long-term growth.</p>
+        </div>
+        <div class="industry-card fade-up delay-1">
+          <div class="industry-icon">⚕️</div>
+          <h3 class="industry-title">Healthcare</h3>
+          <p class="industry-text">HIPAA-aligned advisory for health systems, clinics, and insurers modernizing technology while maintaining strict data security and operational continuity.</p>
+        </div>
+        <div class="industry-card fade-up delay-2">
+          <div class="industry-icon">🏦</div>
+          <h3 class="industry-title">Financial Services</h3>
+          <p class="industry-text">Technology strategy for banks, investment firms, and fintechs navigating compliance, cybersecurity, and digital transformation pressures.</p>
+        </div>
+        <div class="industry-card fade-up delay-3">
+          <div class="industry-icon">🏗️</div>
+          <h3 class="industry-title">Professional Services</h3>
+          <p class="industry-text">Law firms, consulting practices, and professional service organizations modernizing collaboration, security, and client-facing digital systems.</p>
+        </div>
+        <div class="industry-card fade-up delay-4">
+          <div class="industry-icon">🎓</div>
+          <h3 class="industry-title">Education</h3>
+          <p class="industry-text">Higher education institutions and training organizations building modern, accessible, and secure technology environments for faculty and students.</p>
+        </div>
+        <div class="industry-card fade-up delay-5">
+          <div class="industry-icon">🤝</div>
+          <h3 class="industry-title">Nonprofits &amp; Associations</h3>
+          <p class="industry-text">Mission-driven organizations maximizing impact through efficient, secure, and scalable digital infrastructure built within budget constraints.</p>
+        </div>
+        <div class="industry-card fade-up">
+          <div class="industry-icon">⚡</div>
+          <h3 class="industry-title">Utilities &amp; Energy</h3>
+          <p class="industry-text">Critical infrastructure operators requiring resilient OT/IT convergence, real-time monitoring, and cybersecurity-first architecture.</p>
+        </div>
+        <div class="industry-card fade-up delay-1" id="industries" style="border-color:rgba(237,240,105,0.15);background:rgba(237,240,105,0.03);">
+          <div class="industry-icon">🏛️</div>
+          <h3 class="industry-title">Government</h3>
+          <p class="industry-text">Federal, state, and local agencies modernizing infrastructure, strengthening cybersecurity posture, and improving digital service delivery. <a href="#" style="color:var(--yellow);font-size:0.78rem;display:block;margin-top:8px;">Public Sector Advisory →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header fade-up">
+        <div class="section-label">Client Voices</div>
+        <h2 class="section-heading">Trusted by <span>Leaders</span></h2>
+        <p class="section-sub" style="margin:12px auto 0;">What our clients say about partnering with MSAG to transform their digital operations.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"MSAG transformed our entire IT infrastructure in under six months. Their team was embedded with ours from day one, and their attention to compliance and security gave our leadership complete confidence throughout the process."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JR</div>
+            <div>
+              <div class="testimonial-name">James Richardson</div>
+              <div class="testimonial-role">CIO, Federal Civilian Agency</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up delay-1">
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"The operations dashboard MSAG built for us gave our executive team real-time visibility we never had before. What used to take days to compile is now available at a glance. It's changed how we make decisions."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MT</div>
+            <div>
+              <div class="testimonial-name">Maria Thompson</div>
+              <div class="testimonial-role">Director of Operations, State Agency</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up delay-2">
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"From AV integration to managed IT, MSAG has been our go-to technology partner for three years. Their rapid response, proactive support, and genuine investment in our mission sets them apart from every other vendor we've worked with."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DK</div>
+            <div>
+              <div class="testimonial-name">David Kim</div>
+              <div class="testimonial-role">VP Technology, Enterprise Client</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section id="cta">
+    <div class="cta-bg"></div>
+    <div class="container">
+      <div class="cta-inner">
+        <div class="section-label fade-up">Ready to Start</div>
+        <h2 class="cta-title fade-up delay-1">Start Your <span>Technology</span><br />Assessment Today.</h2>
+        <p class="cta-sub fade-up delay-2">Let's evaluate your current environment and identify where modernization, infrastructure strategy, or cybersecurity alignment can create measurable impact. In 15 minutes, we can clarify risk, uncover gaps, and define next steps.</p>
+        <div class="cta-actions fade-up delay-3">
+          <a href="https://app.usemotion.com/meet/ed-henderson-go/msag" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:0.95rem;padding:16px 32px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Book a Free Consultation
+          </a>
+          <a href="tel:3019852977" class="btn btn-outline" style="font-size:0.95rem;padding:16px 32px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            301.985.2977
+          </a>
+        </div>
+        <p class="cta-note fade-up delay-4">Clear guidance. Structured thinking. No vendor pressure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SUPPLIER PREVIEW ===== -->
+  <section id="supplier-preview">
+    <div class="container">
+      <div class="supplier-preview-header">
+        <div>
+          <div class="section-label">Our Supplier Ecosystem</div>
+          <h2 class="section-heading">Access to <span>100+ Technology Suppliers</span></h2>
+          <p class="section-sub">We're a vendor-agnostic advisor with relationships across every major technology category — cloud, connectivity, cybersecurity, collaboration, and more. You get the right fit, not the easiest commission.</p>
+        </div>
+        <a href="suppliers.html" class="btn btn-outline" style="flex-shrink:0;">View All Suppliers →</a>
+      </div>
+    </div>
+    <!-- Row 1: logos 1–40 -->
+    <div class="supplier-logo-track-wrap">
+      <div class="supplier-logo-track" id="track1">
+        <!-- First set -->
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-01.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-02.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-03.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-04.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-05.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-06.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-07.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-08.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-09.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-10.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-11.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-12.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-13.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-14.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-15.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-16.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-17.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-18.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-19.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-20.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-21.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-22.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-23.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-24.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-25.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-26.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-27.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-28.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-29.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-30.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-01.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-02.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-03.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-04.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-05.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-06.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-07.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-08.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-09.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-10.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-11.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-12.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-13.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-14.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-15.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-16.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-17.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-18.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-19.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-20.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-21.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-22.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-23.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-24.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-25.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-26.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-27.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-28.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-29.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-30.png?v=2" alt="Supplier" loading="lazy"/></div>
+      </div>
+    </div>
+    <!-- Row 2: logos 31–60 (reverse direction) -->
+    <div class="supplier-logo-track-wrap" style="border-top:1px solid rgba(255,255,255,0.05);">
+      <div class="supplier-logo-track supplier-logo-track-2">
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-31.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-32.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-33.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-34.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-35.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-36.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-37.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-38.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-39.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-40.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-41.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-42.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-43.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-44.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-45.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-46.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-47.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-48.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-49.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-50.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-51.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-52.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-53.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-54.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-55.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-56.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-57.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-58.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-59.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-60.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <!-- Duplicates -->
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-31.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-32.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-33.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-34.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-35.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-36.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-37.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-38.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-39.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-40.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-41.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-42.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-43.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-44.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-45.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-46.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-47.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-48.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-49.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-50.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-51.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-52.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-53.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-54.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-55.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-56.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-57.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-58.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-59.png?v=2" alt="Supplier" loading="lazy"/></div>
+        <div class="supplier-logo-item"><img src="https://tuv.wpenginepowered.com/wp-content/uploads/supplier_logos/Supplier Logos-60.png?v=2" alt="Supplier" loading="lazy"/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GOVERNMENT TEASER ===== -->
+  <section id="gov-teaser">
+    <div class="container">
+      <div class="gov-teaser-inner">
+        <div class="gov-teaser-content">
+          <div class="gov-teaser-label">
+            <span class="gov-teaser-label-dot"></span>
+            Public Sector Advisory
+          </div>
+          <h2 class="gov-teaser-title">Technology Advisory for<br /><span>Government Organizations.</span></h2>
+          <p class="gov-teaser-text">Federal agencies, state and local governments, and public institutions face unique modernization pressures. MSAG brings 20+ years of public-sector experience — including active contract vehicles and certifications — to help you modernize, comply, and deliver.</p>
+          <a href="government.html" class="btn-gov">
+            Explore Government Services
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="gov-teaser-vehicles">
+          <span class="gov-vehicle-badge">DISA DITCO</span>
+          <span class="gov-vehicle-badge">PG County CATS Contract</span>
+          <span class="gov-vehicle-badge">PG County CBSB</span>
+          <span class="gov-vehicle-badge">CBMBE</span>
+          <span class="gov-vehicle-badge">EMMA SBR</span>
+          <span class="gov-vehicle-badge">Maryland MDOT/DBE</span>
+          <span class="gov-vehicle-badge">Virginia Small DBE</span>
+          <span class="gov-vehicle-badge">Pennsylvania SDB</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo" style="margin-bottom:20px;display:inline-flex;">
+            <div class="nav-logo-mark">M</div>
+            <div class="nav-logo-text">
+              <strong>MSAG</strong>
+              <span>Modern Solutions Advisory Group</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">We advise organizations on building secure, scalable digital systems that support growth, performance, and long-term stability. Strategy. Execution. Accountability.</p>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/in/iamedhenderson/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Twitter/X">
+              <svg viewBox="0 0 24 24"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20.06 12 20.06 12 20.06s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Advisory</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Technology Advisory</a></li>
+            <li><a href="#why">Infrastructure Strategy</a></li>
+            <li><a href="#process">Cybersecurity</a></li>
+            <li><a href="#modernization">Modernization Roadmaps</a></li>
+            <li><a href="#suppliers">Supplier Ecosystem</a></li>
+            <li><a href="#industries">Government</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#why">About MSAG</a></li>
+            <li><a href="#why">Why MSAG</a></li>
+            <li><a href="#process">Our Process</a></li>
+            <li><a href="#industries-grid">Who We Serve</a></li>
+            <li><a href="#testimonials">Client Stories</a></li>
+            <li><a href="https://app.usemotion.com/meet/ed-henderson-go/msag" target="_blank" rel="noopener">Start an Assessment</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Contact</h4>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="https://app.usemotion.com/meet/ed-henderson-go/msag" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='var(--text-muted)'">info@msagtech.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Washington, D.C. Metro Area</span>
+          </div>
+          <div style="margin-top:16px;">
+            <a href="tel:3019852977" class="btn btn-primary" style="font-size:0.8rem;padding:10px 20px;">Get In Touch</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          &copy; 2026 <span>MSAG</span> — Modern Solutions Advisory Group. All rights reserved.
+        </p>
+        <div class="footer-legal">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="accessibility.html">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SERVICE DRAWER ===== -->
+  <div class="drawer-overlay" id="drawerOverlay" role="presentation"></div>
+  <aside class="service-drawer" id="serviceDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="drawer-head">
+      <div class="drawer-head-left">
+        <div class="drawer-icon" id="drawerIcon"></div>
+        <div>
+          <div class="drawer-service-label">Advisory Capability</div>
+          <div class="drawer-title" id="drawerTitle"></div>
+        </div>
+      </div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+    <div class="drawer-foot">
+      <p class="drawer-cta-note">Ready to explore what this looks like for your organization? <strong>Schedule a free 30-minute consultation.</strong></p>
+      <a href="https://app.usemotion.com/meet/ed-henderson-go/msag" target="_blank" rel="noopener" class="drawer-cta-btn">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book a Free Consultation
+      </a>
+    </div>
+  </aside>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // Navbar scroll effect + smooth hero parallax
+    const navbar = document.getElementById('navbar');
+    const heroBg = document.querySelector('.hero-bg');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    if (!prefersReducedMotion && heroBg) {
+      let current = 0;
+      let target = 0;
+      const ease = 0.08; // lower = smoother/slower catch-up
+
+      window.addEventListener('scroll', () => {
+        target = window.scrollY * 0.38;
+      }, { passive: true });
+
+      (function tick() {
+        current += (target - current) * ease;
+        heroBg.style.transform = `translateY(${current.toFixed(2)}px)`;
+        requestAnimationFrame(tick);
+      })();
+    }
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-link, .mobile-menu .btn').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // Intersection Observer for fade-up animations
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Counter animation
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target);
+      const suffix = el.textContent.includes('+') ? '+' : '';
+      const duration = 2000;
+      const start = performance.now();
+      const update = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+    }
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.target.dataset.target) {
+          const suffix = parseInt(entry.target.dataset.target) > 100 ? '+' : '+';
+          entry.target.textContent = '0' + suffix;
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+    // ── Service Drawer ──
+    const serviceData = {
+      'tech-advisory': {
+        icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>',
+        title: 'Technology Advisory',
+        summary: 'Your technology investments should advance your business — not just sustain it. We sit alongside your leadership team to provide independent, executive-level advisory that bridges the gap between business goals and technical execution. Whether you need an outside perspective on a key decision, a structured evaluation of your current environment, or a multi-year technology strategy, we bring the clarity that internal teams and vendor relationships can\'t.',
+        what: ['Executive technology assessment and current-state review','IT roadmap development and investment prioritization','CIO/CTO advisory support for leadership teams','Technology governance frameworks and policy alignment','Board-level briefings and reporting on technology risk'],
+        who: 'Mid-market organizations without a full-time CTO, executives seeking a second opinion before a major technology decision, and leadership teams navigating rapid growth, a digital transition, or a significant platform change.',
+        deliverables: ['Prioritized technology strategy document','Multi-year IT investment roadmap','Risk-mapped decision framework']
+      },
+      'infrastructure': {
+        icon: '<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>',
+        title: 'Infrastructure Strategy',
+        summary: 'Your infrastructure is the foundation everything else runs on. Before recommending a single product, we assess the full stack — network, cloud, connectivity, collaboration, and security baseline — to understand what\'s working, what\'s fragile, and what\'s costing more than it should. The output is a structured architecture plan grounded in your actual operating environment, not a vendor\'s preferred configuration.',
+        what: ['Network performance, topology, and capacity review','Cloud architecture evaluation and right-sizing analysis','Connectivity and bandwidth analysis across locations','Collaboration platform assessment and consolidation planning','Disaster recovery, redundancy, and business continuity review'],
+        who: 'Organizations experiencing performance issues, preparing for growth or a facility change, undergoing a merger or acquisition, or that are overdue for a comprehensive technology refresh.',
+        deliverables: ['Current-state infrastructure map','Gap analysis with prioritized findings','Phased architecture recommendation']
+      },
+      'cybersecurity': {
+        icon: '<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+        title: 'Cybersecurity Advisory',
+        summary: 'Most organizations discover their security gaps the hard way. We work to prevent that. Our cybersecurity advisory practice helps you understand your actual risk posture — not just checkbox compliance — and build governance structures that protect operations, data, and reputation over time. We are framework-aligned (NIST, CIS, ISO 27001) and focus on actionable, prioritized recommendations over theoretical risk scores.',
+        what: ['Security posture and control framework assessment','Endpoint, identity, and access management review','Third-party and vendor risk analysis','Compliance gap mapping across NIST, CIS, SOC 2, and HIPAA','Incident response readiness and tabletop planning'],
+        who: 'Organizations in regulated industries, companies preparing for audits or certifications, and leadership teams that suspect their security program has become more reactive than proactive.',
+        deliverables: ['Prioritized security roadmap','Framework gap and findings report','Cybersecurity governance recommendations']
+      },
+      'modernization': {
+        icon: '<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+        title: 'Modernization Roadmaps',
+        summary: 'Legacy technology doesn\'t fail all at once — it quietly slows everything down. Applications that no longer integrate cleanly, infrastructure that vendors no longer support, processes built around workarounds. We build modernization roadmaps that are honest about where you are, realistic about what it takes to get where you need to be, and structured to minimize operational disruption along the way.',
+        what: ['Application and system portfolio rationalization','Legacy dependency and end-of-life mapping','Cloud migration strategy and sequencing','Platform consolidation and ERP/CRM transition planning','Phased transition planning with risk controls and rollback plans'],
+        who: 'Organizations that have accumulated technical debt over years of growth, agencies with end-of-life systems, and teams preparing for a significant platform migration or operational transformation.',
+        deliverables: ['Phased modernization plan with milestones','Migration sequencing and dependency map','Risk mitigation and change management framework']
+      },
+      'vendor': {
+        icon: '<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+        title: 'Vendor & Supplier Ecosystem',
+        summary: 'We have access to 400+ suppliers across cloud, connectivity, cybersecurity, collaboration, and managed services — and no financial incentive to recommend one over another. That independence is the core of what we offer. We evaluate the market on your behalf, negotiate on your behalf, and deliver analysis grounded in your requirements, not in who pays us the most. Most of the industry calls this rare. We call it standard.',
+        what: ['Multi-vendor evaluation with scored comparison matrix','RFP development, management, and vendor response scoring','Contract and SLA review and negotiation support','Pricing benchmarking against market rates','Ongoing supplier performance monitoring and QBR facilitation'],
+        who: 'Organizations evaluating major vendor contracts, teams that feel they may be overpaying or underserved by a current provider, and procurement teams seeking an independent perspective before committing.',
+        deliverables: ['Scored vendor comparison and recommendation brief','Negotiation framework and contract review summary','Supplier performance monitoring plan']
+      },
+      'managed-execution': {
+        icon: '<svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>',
+        title: 'Managed Execution',
+        summary: 'Strategy without execution is just a document. For organizations that need more than a plan, we stay engaged through implementation — serving as the management layer between your leadership team and the vendors executing the work. We hold vendors accountable to the roadmap, manage timelines and deliverables, escalate when things drift, and provide transparent reporting throughout.',
+        what: ['Program and project management oversight across vendors','Vendor performance management and SLA enforcement','Milestone, deliverable, and budget tracking','Risk and issue escalation management with executive reporting','Post-implementation review and optimization planning'],
+        who: 'Organizations with a clear strategy but limited internal bandwidth to manage complex, multi-vendor implementations. Especially valuable during infrastructure overhauls, platform migrations, and major modernization initiatives.',
+        deliverables: ['Completed implementation with vendor performance record','Executive status reporting throughout engagement','Post-launch optimization brief and handoff documentation']
+      }
+    };
+
+    const drawer = document.getElementById('serviceDrawer');
+    const overlay = document.getElementById('drawerOverlay');
+    const drawerIcon = document.getElementById('drawerIcon');
+    const drawerTitle = document.getElementById('drawerTitle');
+    const drawerBody = document.getElementById('drawerBody');
+    const drawerClose = document.getElementById('drawerClose');
+    let lastFocused = null;
+
+    function openDrawer(key) {
+      const d = serviceData[key];
+      if (!d) return;
+      lastFocused = document.activeElement;
+      drawerIcon.innerHTML = d.icon;
+      drawerTitle.textContent = d.title;
+
+      const checkIcon = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+      drawerBody.innerHTML = `
+        <p class="drawer-summary">${d.summary}</p>
+        <div class="drawer-section">
+          <div class="drawer-section-label">What We Do</div>
+          <ul class="drawer-detail-list">${d.what.map(w => `<li>${w}</li>`).join('')}</ul>
+        </div>
+        <div class="drawer-section">
+          <div class="drawer-section-label">Who This Is For</div>
+          <div class="drawer-profile">${d.who}</div>
+        </div>
+        <div class="drawer-section">
+          <div class="drawer-section-label">What You Walk Away With</div>
+          <div class="drawer-deliverables">${d.deliverables.map(del => `
+            <div class="drawer-deliverable">
+              <div class="drawer-deliverable-dot">${checkIcon}</div>
+              ${del}
+            </div>`).join('')}
+          </div>
+        </div>`;
+
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => drawerClose.focus(), 50);
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      overlay.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    document.querySelectorAll('.service-explore-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openDrawer(btn.dataset.service);
+      });
+    });
+
+    drawerClose.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+    });
+
+    // ── End Service Drawer ──
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

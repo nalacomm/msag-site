@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accessibility Statement — MSAG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #EDF069;
+      --dark: #0d0d0e;
+      --dark-2: #141416;
+      --dark-3: #1c1c1f;
+      --text: #e8e8ea;
+      --text-muted: #8a8a94;
+      --border: rgba(255,255,255,0.07);
+      --radius: 12px;
+      --font-head: 'Lexend Deca', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--dark); color: var(--text); font-family: var(--font-body); font-size: 1rem; line-height: 1.75; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,14,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-mark { width: 32px; height: 32px; background: var(--yellow); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-weight: 700; color: var(--dark); font-size: 0.95rem; }
+    .nav-logo-name { font-family: var(--font-head); font-weight: 600; font-size: 0.95rem; color: var(--text); }
+    .nav-back { font-size: 0.82rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--yellow); }
+
+    .page-wrap { max-width: 820px; margin: 0 auto; padding: 72px 40px 100px; }
+    .page-label { font-family: var(--font-head); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow); margin-bottom: 12px; }
+    h1 { font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 12px; }
+    .page-date { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+    h2 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 600; color: #fff; margin: 40px 0 12px; }
+    p { color: var(--text-muted); margin-bottom: 16px; }
+    p strong { color: var(--text); }
+    ul { color: var(--text-muted); padding-left: 24px; margin-bottom: 16px; }
+    ul li { margin-bottom: 8px; }
+    a { color: var(--yellow); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Conformance badge */
+    .conformance-card { background: var(--dark-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: flex; gap: 24px; align-items: flex-start; }
+    .conformance-icon { flex-shrink: 0; width: 48px; height: 48px; background: rgba(237,240,105,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .conformance-icon svg { width: 24px; height: 24px; stroke: var(--yellow); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .conformance-body h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .conformance-body p { margin: 0; font-size: 0.9rem; }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 0.78rem; color: var(--text-muted); }
+    .footer-copy span { color: var(--yellow); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 0.78rem; color: var(--text-muted); text-decoration: none; }
+    .footer-legal a:hover { color: var(--yellow); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .page-wrap { padding: 48px 20px 72px; }
+      .conformance-card { flex-direction: column; gap: 16px; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">M</div>
+      <span class="nav-logo-name">MSAG</span>
+    </a>
+    <a href="index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <main class="page-wrap">
+    <div class="page-label">Accessibility</div>
+    <h1>Accessibility Statement</h1>
+    <p class="page-date">Effective Date: January 1, 2026 &nbsp;|&nbsp; Last Updated: March 2026</p>
+
+    <p>Modern Solutions Advisory Group ("MSAG") is committed to ensuring digital accessibility for all users, including people with disabilities. We actively work to improve the accessibility of our website and adhere to recognized standards as part of our ongoing advisory practice.</p>
+
+    <div class="conformance-card">
+      <div class="conformance-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="conformance-body">
+        <h3>WCAG 2.1 AA Target Conformance</h3>
+        <p>We design and maintain this website with the goal of meeting the <strong>Web Content Accessibility Guidelines (WCAG) 2.1</strong> at the <strong>AA</strong> level, as published by the World Wide Web Consortium (W3C).</p>
+      </div>
+    </div>
+
+    <h2>Our Commitments</h2>
+    <p>We take the following steps to support accessible use of our website:</p>
+    <ul>
+      <li><strong>Semantic HTML</strong> — We use proper heading structure, landmark regions, and descriptive link text to support screen reader navigation.</li>
+      <li><strong>Keyboard accessibility</strong> — All interactive elements are reachable and operable without a mouse.</li>
+      <li><strong>Sufficient color contrast</strong> — Text and UI elements are designed to meet or exceed minimum contrast ratios.</li>
+      <li><strong>Alternative text</strong> — Images include descriptive alt attributes or are marked as decorative where appropriate.</li>
+      <li><strong>Responsive design</strong> — Content reflows appropriately across screen sizes and zoom levels up to 400%.</li>
+      <li><strong>Focus indicators</strong> — Visible focus styles are present for keyboard users.</li>
+      <li><strong>No motion autoplay</strong> — Animated content respects the <code>prefers-reduced-motion</code> media query where applicable.</li>
+    </ul>
+
+    <h2>Known Limitations</h2>
+    <p>While we strive for full conformance, some areas of the site may not yet fully meet all WCAG 2.1 AA criteria. Known areas of ongoing improvement include:</p>
+    <ul>
+      <li>Third-party embedded content or external scheduling tools (such as calendar widgets) may have their own accessibility constraints beyond our direct control.</li>
+      <li>Older PDF documents, if linked, may not be fully accessible pending remediation.</li>
+      <li>The supplier logo grid contains images that are decorative in nature; we are refining alt text handling for these assets.</li>
+    </ul>
+    <p>We are actively working to address these limitations and improve the overall accessibility of all digital touchpoints.</p>
+
+    <h2>Assistive Technology Support</h2>
+    <p>This site is designed to be compatible with the following assistive technologies:</p>
+    <ul>
+      <li>Screen readers — including NVDA, JAWS, and VoiceOver</li>
+      <li>Keyboard-only navigation</li>
+      <li>Browser zoom and text resizing up to 200%</li>
+      <li>High contrast display modes</li>
+      <li>Voice control software (e.g., Dragon NaturallySpeaking)</li>
+    </ul>
+
+    <h2>Section 508 Compliance</h2>
+    <p>MSAG provides accessibility advisory services to government agencies and is committed to aligning our own digital presence with <strong>Section 508 of the Rehabilitation Act</strong>. Our government practice includes Section 508 compliance assessments, VPAT preparation, and remediation roadmaps for federal and state agency clients.</p>
+
+    <h2>Feedback and Contact</h2>
+    <p>If you experience any difficulty accessing content on this website, or if you find any portion of the site inaccessible, please contact us. We take all accessibility feedback seriously and will respond within five business days.</p>
+    <p>
+      <strong>Email:</strong> <a href="mailto:info@msagtech.com">info@msagtech.com</a><br />
+      <strong>Subject line:</strong> Accessibility Feedback — msagtech.com
+    </p>
+    <p>When reporting an issue, please include the URL of the page, the type of assistive technology you were using, and a description of the problem. This helps us replicate and resolve issues as efficiently as possible.</p>
+
+    <h2>Formal Complaints</h2>
+    <p>If you are not satisfied with our response to an accessibility concern, you may contact the relevant authority in your jurisdiction. In the United States, you may contact the <strong>U.S. Department of Justice Civil Rights Division</strong> or file a complaint under applicable law.</p>
+
+    <h2>Continuous Improvement</h2>
+    <p>Accessibility is an ongoing commitment. We conduct periodic reviews of this site's conformance, incorporate accessibility testing into our development process, and update this statement as improvements are made. We view digital accessibility not as a checkbox but as a reflection of our advisory values: doing the work right, not just doing it fast.</p>
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; 2026 <span>MSAG</span> — Modern Solutions Advisory Group. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="accessibility.html">Accessibility</a>
+    </div>
+  </footer>
+
+</body>
+</html>

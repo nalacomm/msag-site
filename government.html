@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Government Technology Advisory — MSAG</title>
+  <meta name="description" content="MSAG provides technology advisory, infrastructure modernization, and cybersecurity strategy for federal, state, and local government organizations. GSA Schedule holder." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #08101e;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    :root {
+      --blue: #3b82f6;
+      --blue-light: #93c5fd;
+      --blue-dim: rgba(59,130,246,0.12);
+      --yellow: #EDF069;
+      --dark: #08101e;
+      --dark-2: #0d1526;
+      --dark-3: #121f35;
+      --dark-4: #1a2a42;
+      --border: rgba(255,255,255,0.08);
+      --border-blue: rgba(59,130,246,0.2);
+      --text-muted: rgba(255,255,255,0.48);
+      --text-secondary: rgba(255,255,255,0.72);
+      --radius: 16px;
+      --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* NAV */
+    .page-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,16,30,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .page-nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--text-muted);
+      transition: var(--transition);
+      padding: 6px 12px; border-radius: 8px;
+    }
+    .nav-back:hover { color: #fff; background: rgba(255,255,255,0.05); }
+    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .nav-logo-group { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-mark {
+      width: 32px; height: 32px;
+      background: var(--yellow); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Lexend Deca', sans-serif; font-weight: 800; font-size: 13px; color: #131314;
+    }
+    .nav-logo-name { font-family: 'Lexend Deca', sans-serif; font-size: 0.9rem; font-weight: 700; color: #fff; }
+    .nav-cta-gov {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Lexend Deca', sans-serif; font-size: 0.78rem; font-weight: 600;
+      background: var(--blue); color: #fff;
+      padding: 8px 18px; border-radius: 100px;
+      transition: var(--transition);
+    }
+    .nav-cta-gov:hover { background: #2563eb; }
+
+    /* HERO */
+    .gov-hero {
+      padding: 96px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .gov-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 40%, rgba(59,130,246,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 10% 70%, rgba(59,130,246,0.05) 0%, transparent 50%);
+    }
+    .gov-hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+    }
+    .gov-hero-inner {
+      position: relative; max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 420px; gap: 72px; align-items: center;
+    }
+    .gov-hero-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blue-light);
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25);
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+    }
+    .gov-hero-dot { width: 6px; height: 6px; background: var(--blue-light); border-radius: 50%; }
+    .gov-hero-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.08; color: #fff;
+      margin-bottom: 20px;
+    }
+    .gov-hero-title span { color: var(--blue-light); }
+    .gov-hero-desc {
+      font-size: 1.05rem; color: var(--text-secondary);
+      line-height: 1.75; max-width: 540px; margin-bottom: 36px;
+    }
+    .gov-hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .btn-gov-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Lexend Deca', sans-serif; font-size: 0.9rem; font-weight: 600;
+      background: var(--blue); color: #fff;
+      padding: 14px 28px; border-radius: 100px;
+      transition: var(--transition);
+    }
+    .btn-gov-primary:hover { background: #2563eb; transform: translateY(-2px); }
+    .btn-gov-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Lexend Deca', sans-serif; font-size: 0.9rem; font-weight: 600;
+      background: transparent; color: var(--blue-light);
+      border: 1.5px solid var(--border-blue);
+      padding: 14px 28px; border-radius: 100px;
+      transition: var(--transition);
+    }
+    .btn-gov-outline:hover { border-color: var(--blue-light); background: rgba(59,130,246,0.08); }
+
+    /* Contract vehicles card */
+    .gov-hero-card {
+      background: var(--dark-3); border: 1px solid var(--border-blue);
+      border-radius: var(--radius); padding: 32px;
+    }
+    .gov-hero-card-title {
+      font-family: 'Lexend Deca', sans-serif; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue-light);
+      margin-bottom: 20px;
+    }
+    .contract-list { display: flex; flex-direction: column; gap: 10px; }
+    .contract-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 14px;
+      background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.12);
+      border-radius: 10px;
+    }
+    .contract-icon {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: rgba(59,130,246,0.15);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 12px;
+    }
+    .contract-name {
+      font-family: 'Lexend Deca', sans-serif; font-size: 0.82rem; font-weight: 700; color: #fff;
+    }
+    .contract-num { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* STATS */
+    .gov-stats {
+      background: var(--dark-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .gov-stats-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .gov-stat-item {
+      padding: 36px 24px; text-align: center;
+      border-right: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .gov-stat-item:last-child { border-right: none; }
+    .gov-stat-item:hover { background: rgba(59,130,246,0.03); }
+    .gov-stat-num {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800;
+      color: var(--blue-light); line-height: 1; margin-bottom: 6px;
+    }
+    .gov-stat-label { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* SERVICES */
+    .gov-services { padding: 100px 24px; }
+    .gov-services-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label-gov {
+      display: inline-block;
+      font-family: 'Lexend Deca', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--blue-light); background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 16px;
+    }
+    .gov-section-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: #fff;
+      line-height: 1.2; margin-bottom: 12px;
+    }
+    .gov-section-title span { color: var(--blue-light); }
+    .gov-section-sub { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; max-width: 560px; margin-bottom: 56px; }
+    .gov-services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    }
+    .gov-service-card {
+      background: var(--dark-2); padding: 36px 32px;
+      transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .gov-service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--blue); transform: scaleX(0); transform-origin: left;
+      transition: var(--transition);
+    }
+    .gov-service-card:hover { background: var(--dark-3); }
+    .gov-service-card:hover::before { transform: scaleX(1); }
+    .gov-svc-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; transition: var(--transition);
+    }
+    .gov-service-card:hover .gov-svc-icon { background: rgba(59,130,246,0.18); }
+    .gov-svc-icon svg {
+      width: 22px; height: 22px; stroke: var(--blue-light);
+      fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .gov-svc-title {
+      font-family: 'Lexend Deca', sans-serif; font-size: 1.05rem; font-weight: 700; color: #fff;
+      margin-bottom: 10px;
+    }
+    .gov-svc-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+    .gov-svc-list { display: flex; flex-direction: column; gap: 7px; }
+    .gov-svc-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-secondary); }
+    .gov-svc-item::before {
+      content: ''; width: 5px; height: 5px;
+      background: var(--blue-light); border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* CERTIFICATIONS */
+    .gov-certs { padding: 100px 24px; background: var(--dark-2); }
+    .gov-certs-inner { max-width: 1200px; margin: 0 auto; }
+    .gov-certs-header { text-align: center; margin-bottom: 56px; }
+    .gov-certs-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    .cert-card {
+      background: var(--dark-3); border: 1px solid var(--border-blue);
+      border-radius: var(--radius); padding: 28px 20px; text-align: center;
+      transition: var(--transition);
+    }
+    .cert-card:hover {
+      background: rgba(59,130,246,0.06); border-color: rgba(59,130,246,0.35);
+      transform: translateY(-3px);
+    }
+    .cert-icon { font-size: 2rem; margin-bottom: 12px; }
+    .cert-name {
+      font-family: 'Lexend Deca', sans-serif; font-size: 0.85rem; font-weight: 700;
+      color: #fff; margin-bottom: 4px;
+    }
+    .cert-id { font-size: 0.72rem; color: var(--blue-light); }
+
+    /* NAICS */
+    .gov-naics { padding: 80px 24px; }
+    .gov-naics-inner { max-width: 1200px; margin: 0 auto; }
+    .gov-naics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 40px; }
+    .naics-pill {
+      background: var(--dark-3); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 16px;
+      transition: var(--transition);
+    }
+    .naics-pill:hover { border-color: var(--border-blue); }
+    .naics-code {
+      font-family: 'Lexend Deca', sans-serif; font-size: 0.8rem; font-weight: 700;
+      color: var(--blue-light); margin-bottom: 4px;
+    }
+    .naics-label { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* CASE HIGHLIGHT */
+    .gov-case { padding: 100px 24px; background: var(--dark-2); }
+    .gov-case-inner { max-width: 1200px; margin: 0 auto; }
+    .gov-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+    .case-card {
+      background: var(--dark-3); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 36px; transition: var(--transition);
+    }
+    .case-card:hover { border-color: var(--border-blue); }
+    .case-tag {
+      font-family: 'Lexend Deca', sans-serif; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-light);
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+      padding: 4px 10px; border-radius: 6px; display: inline-block; margin-bottom: 16px;
+    }
+    .case-title {
+      font-family: 'Lexend Deca', sans-serif; font-size: 1.1rem; font-weight: 700;
+      color: #fff; margin-bottom: 10px;
+    }
+    .case-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* FAQ */
+    .gov-faq { padding: 100px 24px; }
+    .gov-faq-inner { max-width: 760px; margin: 0 auto; }
+    .gov-faq-header { text-align: center; margin-bottom: 48px; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--dark-3); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; transition: border-color var(--transition);
+    }
+    .faq-item:hover { border-color: var(--border-blue); }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      padding: 20px 24px; text-align: left;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      cursor: pointer;
+      font-family: 'Lexend Deca', sans-serif; font-size: 0.95rem; font-weight: 600; color: #fff;
+    }
+    .faq-icon {
+      width: 20px; height: 20px; flex-shrink: 0;
+      stroke: var(--blue-light); fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+      transition: transform var(--transition);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a-inner {
+      padding: 0 24px 20px; padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem; color: var(--text-secondary); line-height: 1.75;
+    }
+
+    /* CTA */
+    .gov-cta {
+      padding: 100px 24px; text-align: center;
+      background: linear-gradient(180deg, var(--dark-2) 0%, var(--dark) 100%);
+      position: relative; overflow: hidden;
+    }
+    .gov-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(59,130,246,0.08) 0%, transparent 70%);
+    }
+    .gov-cta-inner { position: relative; max-width: 600px; margin: 0 auto; }
+    .gov-cta-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff;
+      line-height: 1.1; margin-bottom: 16px;
+    }
+    .gov-cta-title span { color: var(--blue-light); }
+    .gov-cta-sub { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 36px; }
+    .gov-cta-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .gov-cta-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 20px; }
+
+    /* FOOTER */
+    .gov-footer { background: #060d18; border-top: 1px solid var(--border); padding: 24px; }
+    .gov-footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .gov-footer-copy { font-size: 0.78rem; color: var(--text-muted); }
+    .gov-footer-copy span { color: var(--yellow); }
+
+    /* RESPONSIVE */
+    @media (max-width: 1000px) {
+      .gov-hero-inner { grid-template-columns: 1fr; }
+      .gov-hero-card { display: none; }
+      .gov-certs-grid { grid-template-columns: repeat(3, 1fr); }
+      .gov-naics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .gov-services-grid, .gov-case-grid { grid-template-columns: 1fr; }
+      .gov-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .gov-stat-item:nth-child(2) { border-right: none; }
+      .gov-stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .gov-certs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="page-nav">
+    <div class="page-nav-inner">
+      <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home
+      </a>
+      <a href="index.html" class="nav-logo-group">
+        <div class="nav-logo-mark">M</div>
+        <span class="nav-logo-name">MSAG</span>
+      </a>
+      <a href="mailto:info@msagtech.com" class="nav-cta-gov">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="gov-hero">
+    <div class="gov-hero-bg"></div>
+    <div class="gov-hero-grid"></div>
+    <div class="gov-hero-inner">
+      <div>
+        <div class="gov-hero-label">
+          <span class="gov-hero-dot"></span>
+          Public Sector Advisory
+        </div>
+        <h1 class="gov-hero-title">Technology Advisory<br />for <span>Government<br />Organizations.</span></h1>
+        <p class="gov-hero-desc">Federal agencies, state and local governments, and public institutions face growing pressure to modernize systems, strengthen cybersecurity, and deliver reliable digital services. MSAG provides structured technology advisory and infrastructure strategy to help government teams plan, modernize, and manage critical systems — with the certifications and contract vehicles to support direct acquisition.</p>
+        <div class="gov-hero-actions">
+          <a href="mailto:info@msagtech.com" class="btn-gov-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Request a Capabilities Brief
+          </a>
+          <a href="#certifications" class="btn-gov-outline">View Contract Vehicles</a>
+        </div>
+      </div>
+      <!-- Contract card (desktop) -->
+      <div class="gov-hero-card">
+        <div class="gov-hero-card-title">Active Contract Vehicles</div>
+        <div class="contract-list">
+          <div class="contract-item">
+            <div class="contract-icon">🏛️</div>
+            <div>
+              <div class="contract-name">GSA MAS</div>
+              <div class="contract-num">47QTCA20D00FS</div>
+            </div>
+          </div>
+          <div class="contract-item">
+            <div class="contract-icon">⭐</div>
+            <div>
+              <div class="contract-name">8(a) STARS III</div>
+              <div class="contract-num">GWAC – IT Services</div>
+            </div>
+          </div>
+          <div class="contract-item">
+            <div class="contract-icon">🔒</div>
+            <div>
+              <div class="contract-name">DISA DITCO</div>
+              <div class="contract-num">Active Contract</div>
+            </div>
+          </div>
+          <div class="contract-item">
+            <div class="contract-icon">🏙️</div>
+            <div>
+              <div class="contract-name">PGC CATS</div>
+              <div class="contract-num">4400005229</div>
+            </div>
+          </div>
+          <div class="contract-item">
+            <div class="contract-icon">🚇</div>
+            <div>
+              <div class="contract-name">WMATA DBE</div>
+              <div class="contract-num">Active Certification</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <div class="gov-stats">
+    <div class="gov-stats-grid">
+      <div class="gov-stat-item">
+        <div class="gov-stat-num">20+</div>
+        <div class="gov-stat-label">Years Supporting<br />Government Clients</div>
+      </div>
+      <div class="gov-stat-item">
+        <div class="gov-stat-num">10</div>
+        <div class="gov-stat-label">Active Contract<br />Vehicles &amp; Certs</div>
+      </div>
+      <div class="gov-stat-item">
+        <div class="gov-stat-num">Federal<br />&amp; SLED</div>
+        <div class="gov-stat-label">Experience Across<br />All Government Tiers</div>
+      </div>
+      <div class="gov-stat-item">
+        <div class="gov-stat-num">A+</div>
+        <div class="gov-stat-label">Past Performance<br />Rating</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="gov-services" id="services">
+    <div class="gov-services-inner">
+      <div class="section-label-gov">What We Deliver</div>
+      <h2 class="gov-section-title">Government <span>Technology Services</span></h2>
+      <p class="gov-section-sub">We align technology modernization with compliance standards, operational continuity, and long-term mission performance.</p>
+      <div class="gov-services-grid">
+        <!-- Enterprise IT -->
+        <div class="gov-service-card">
+          <div class="gov-svc-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <h3 class="gov-svc-title">Enterprise IT Advisory</h3>
+          <p class="gov-svc-desc">Strategic planning and management for large-scale government IT environments, from architecture to operations oversight.</p>
+          <ul class="gov-svc-list">
+            <li class="gov-svc-item">IT Strategy &amp; Demand Management</li>
+            <li class="gov-svc-item">Enterprise Architecture</li>
+            <li class="gov-svc-item">Agile Development Oversight</li>
+            <li class="gov-svc-item">Infrastructure Design &amp; Planning</li>
+          </ul>
+        </div>
+        <!-- Cloud -->
+        <div class="gov-service-card">
+          <div class="gov-svc-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          </div>
+          <h3 class="gov-svc-title">Cloud &amp; Hybrid Infrastructure</h3>
+          <p class="gov-svc-desc">FedRAMP-aligned cloud strategy and hybrid ecosystem implementation for government mission environments.</p>
+          <ul class="gov-svc-list">
+            <li class="gov-svc-item">FedRAMP &amp; FISMA alignment</li>
+            <li class="gov-svc-item">Hybrid ecosystem implementation</li>
+            <li class="gov-svc-item">Remote workplace &amp; collaboration</li>
+            <li class="gov-svc-item">AI &amp; application modernization</li>
+          </ul>
+        </div>
+        <!-- Cybersecurity -->
+        <div class="gov-service-card">
+          <div class="gov-svc-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="gov-svc-title">Cybersecurity Advisory</h3>
+          <p class="gov-svc-desc">Risk-based security strategy aligned with NIST, CMMC, and federal compliance frameworks for government systems.</p>
+          <ul class="gov-svc-list">
+            <li class="gov-svc-item">Vulnerability &amp; risk assessments</li>
+            <li class="gov-svc-item">NIST / CMMC / FISMA alignment</li>
+            <li class="gov-svc-item">Mobile security &amp; endpoint control</li>
+            <li class="gov-svc-item">Zero-trust architecture planning</li>
+          </ul>
+        </div>
+        <!-- Data -->
+        <div class="gov-service-card">
+          <div class="gov-svc-icon">
+            <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <h3 class="gov-svc-title">Data &amp; Analytics</h3>
+          <p class="gov-svc-desc">Real-time data visualization and analytics platforms that give agency leadership clear visibility into mission performance metrics.</p>
+          <ul class="gov-svc-list">
+            <li class="gov-svc-item">Data storage &amp; DRaaS implementation</li>
+            <li class="gov-svc-item">Data center consolidation</li>
+            <li class="gov-svc-item">Custom dashboard development</li>
+            <li class="gov-svc-item">Analytics &amp; reporting platforms</li>
+          </ul>
+        </div>
+        <!-- Telecom -->
+        <div class="gov-service-card">
+          <div class="gov-svc-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h3 class="gov-svc-title">Telecommunications</h3>
+          <p class="gov-svc-desc">End-to-end telecommunications advisory including carrier circuits, cloud collaboration, and secure network cabling for government facilities.</p>
+          <ul class="gov-svc-list">
+            <li class="gov-svc-item">Circuit &amp; carrier advisory</li>
+            <li class="gov-svc-item">Cloud collaboration platforms</li>
+            <li class="gov-svc-item">End-to-end video conferencing</li>
+            <li class="gov-svc-item">Network cabling &amp; infrastructure</li>
+          </ul>
+        </div>
+        <!-- Digital Transformation -->
+        <div class="gov-service-card">
+          <div class="gov-svc-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="gov-svc-title">Digital Transformation</h3>
+          <p class="gov-svc-desc">Structured modernization roadmaps for agencies replacing legacy systems, migrating to modern platforms, and improving constituent-facing services.</p>
+          <ul class="gov-svc-list">
+            <li class="gov-svc-item">Digital transformation strategy</li>
+            <li class="gov-svc-item">508/ADA compliance advisory</li>
+            <li class="gov-svc-item">Web &amp; CMS modernization</li>
+            <li class="gov-svc-item">System adoption &amp; change management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="gov-certs" id="certifications">
+    <div class="gov-certs-inner">
+      <div class="gov-certs-header">
+        <div class="section-label-gov">Certifications &amp; Contract Vehicles</div>
+        <h2 class="gov-section-title" style="text-align:center;">Ready to Work Through <span>Your Preferred Vehicle</span></h2>
+        <p class="gov-section-sub" style="margin:12px auto;text-align:center;">Our certifications are accepted by most federal, state, and local governments in support of their minority business inclusion and diversity procurement goals.</p>
+      </div>
+      <div class="gov-certs-grid">
+        <div class="cert-card">
+          <div class="cert-icon">🏛️</div>
+          <div class="cert-name">GSA MAS</div>
+          <div class="cert-id">47QTCA20D00FS</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">⭐</div>
+          <div class="cert-name">8(a) STARS III</div>
+          <div class="cert-id">GWAC — IT Services</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🔒</div>
+          <div class="cert-name">DISA DITCO</div>
+          <div class="cert-id">Active Contract</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🏙️</div>
+          <div class="cert-name">PGC CATS</div>
+          <div class="cert-id">4400005229</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🔗</div>
+          <div class="cert-name">EAST2 / SAIC</div>
+          <div class="cert-id">Active Subcontract</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🚇</div>
+          <div class="cert-name">WMATA DBE</div>
+          <div class="cert-id">Active Certification</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🦀</div>
+          <div class="cert-name">Maryland MDOT/DBE</div>
+          <div class="cert-id">Certified</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🍑</div>
+          <div class="cert-name">Virginia Small DBE</div>
+          <div class="cert-id">Certified</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🔔</div>
+          <div class="cert-name">Pennsylvania SDB</div>
+          <div class="cert-id">Certified</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🌲</div>
+          <div class="cert-name">NCDOT MBE</div>
+          <div class="cert-id">Certified</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:36px;">
+        <a href="mailto:info@msagtech.com" class="btn-gov-outline" style="display:inline-flex;">
+          Request Capability Statement
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:6px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section class="gov-case" id="work">
+    <div class="gov-case-inner">
+      <div class="section-label-gov">Past Performance</div>
+      <h2 class="gov-section-title">Featured <span>Government Engagements</span></h2>
+      <p class="gov-section-sub">A sample of the work we have delivered for government clients across federal, state, and local environments.</p>
+      <div class="gov-case-grid">
+        <div class="case-card">
+          <div class="case-tag">Prince George's County, MD</div>
+          <h3 class="case-title">IT KPI Operations Dashboard</h3>
+          <p class="case-desc">Designed and delivered a real-time IT performance dashboard for the Prince George's County Council, providing leadership with instant visibility into key operational metrics, budget alignment, and service delivery performance.</p>
+        </div>
+        <div class="case-card">
+          <div class="case-tag">NASA — Educational Technology</div>
+          <h3 class="case-title">Build a Universe — CMB Power Spectrum Analyzer</h3>
+          <p class="case-desc">Played a key role in developing NASA's "Build a Universe" (BAU) project — an innovative educational tool designed to engage students and educators in exploring the cosmos through interactive data visualization and science communication technology.</p>
+        </div>
+        <div class="case-card">
+          <div class="case-tag">Federal Infrastructure</div>
+          <h3 class="case-title">Enterprise IT Modernization Advisory</h3>
+          <p class="case-desc">Provided enterprise architecture advisory and infrastructure modernization planning for federal civilian agency environments, including requirements management, DAS systems integration, and compliance-aligned design documentation.</p>
+        </div>
+        <div class="case-card">
+          <div class="case-tag">State &amp; Local Government</div>
+          <h3 class="case-title">Digital Transformation &amp; ADA Compliance</h3>
+          <p class="case-desc">Led digital transformation advisory for public-sector web properties — delivering Section 508 and WCAG 2.1 AA compliant design, CMS modernization, and accessibility remediation for state agency constituent-facing systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="gov-faq">
+    <div class="gov-faq-inner">
+      <div class="gov-faq-header">
+        <div class="section-label-gov">Common Questions</div>
+        <h2 class="gov-section-title" style="text-align:center;">Government <span>Advisory FAQ</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">
+            How can we procure services from MSAG?
+            <svg class="faq-icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">MSAG holds multiple contract vehicles that support direct acquisition without full and open competition, including our GSA Multiple Award Schedule (MAS) contract 47QTCA20D00FS, 8(a) STARS III, DISA DITCO, and several state and local vehicles. Contact us and we'll identify the best procurement path for your agency.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            What compliance standards does MSAG align with?
+            <svg class="faq-icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">Our advisory practice is designed around the compliance frameworks most critical to government environments: NIST SP 800-53, FISMA, FedRAMP, CMMC, Section 508 (WCAG 2.1 AA), and state/local equivalents. Every technology recommendation and architecture review is evaluated against these standards before delivery.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            Does MSAG provide a Capability Statement?
+            <svg class="faq-icon" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">Yes. Our full Capability Statement is available on request and includes our NAICS codes, certifications, past performance highlights, core competencies, and point of contact information. Email us at info@msagtech.com and we'll provide it in PDF format within 24 hours.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="gov-cta">
+    <div class="gov-cta-inner">
+      <div class="section-label-gov" style="display:inline-block;">Ready to Engage</div>
+      <h2 class="gov-cta-title">Let's Discuss Your<br /><span>Agency's Technology Needs.</span></h2>
+      <p class="gov-cta-sub">Contact our public sector team to request a capabilities brief, discuss upcoming procurement, or begin a technology assessment for your organization.</p>
+      <div class="gov-cta-actions">
+        <a href="mailto:info@msagtech.com" class="btn-gov-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Contact Our Gov Team
+        </a>
+        <a href="index.html" class="btn-gov-outline">
+          ← Back to Main Site
+        </a>
+      </div>
+      <p class="gov-cta-note">info@msagtech.com &nbsp;·&nbsp; msagtech.com &nbsp;·&nbsp; Washington, D.C. Metro Area</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="gov-footer">
+    <div class="gov-footer-inner">
+      <p class="gov-footer-copy">&copy; 2026 <span>MSAG</span> — Modern Solutions Advisory Group. All rights reserved.</p>
+      <a href="index.html" style="font-size:0.78rem;color:rgba(255,255,255,0.4);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">← Return to Main Site</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>
